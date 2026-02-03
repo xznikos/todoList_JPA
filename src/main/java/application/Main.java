@@ -7,14 +7,20 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     static void main() {
         try (Scanner sc = new Scanner(System.in)) {
 
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("todoList-Jpa");
+            Map<String, String> props = new HashMap<>();
+            props.put("jakarta.persistence.jdbc.user", System.getenv("DB_USER"));
+            props.put("jakarta.persistence.jdbc.password", System.getenv("DB_PASSWORD"));
+
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("todoList-Jpa", props);
             EntityManager em = emf.createEntityManager();
 
             System.out.println("--------- TodoList ---------");
@@ -24,6 +30,7 @@ public class Main {
             System.out.println("---- (3) remover tarefa ----");
             System.out.println("---- (4) atualizar tarefa --");
             System.out.println("---- (5) Mostrar tarefas ---");
+            System.out.print("Escolha: ");
             int choice = sc.nextInt();
             sc.nextLine();
 
@@ -124,6 +131,7 @@ public class Main {
                 System.out.println("---- (3) remover tarefa ----");
                 System.out.println("---- (4) atualizar tarefa --");
                 System.out.println("---- (5) Mostrar tarefas ---");
+                System.out.print("Escolha: ");
                 choice = sc.nextInt();
                 sc.nextLine();
             }
