@@ -103,5 +103,7 @@ Para rodar o projeto, vá na pasta application no arquivo Main e aperte CTRL + F
 
 Linkedin: https://www.linkedin.com/in/nikolas-kaio-sandoval-da-mota/
 
+Email: nikolasmota2@gmail.com
+
 
 
