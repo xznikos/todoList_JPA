@@ -1,11 +1,10 @@
 package entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+@Entity
 public class TodoList implements Serializable {
 
     @Id
@@ -13,13 +12,17 @@ public class TodoList implements Serializable {
     private Integer id;
     private String title;
     private String description;
-    private String status;
 
-    public TodoList(Integer id, String title, String description, String status) {
-        this.id = id;
+    @Enumerated(EnumType.STRING)
+    private STATUS status;
+
+    public TodoList() {
+    }
+
+    public TodoList(String title, String description) {
         this.title = title;
         this.description = description;
-        this.status = status;
+        this.status = STATUS.PENDENTE;
     }
 
     public Integer getId() {
@@ -46,21 +49,19 @@ public class TodoList implements Serializable {
         this.description = description;
     }
 
-    public String getStatus() {
+    public STATUS getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(STATUS status) {
         this.status = status;
     }
 
     @Override
     public String toString() {
-        return "TodoList{" +
-                "id=" + getId() +
-                ", title='" + getTitle() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", status='" + getStatus() + '\'' +
-                '}';
+        return "ID: " + id +
+                " | Título: " + title +
+                " | Descrição: " + description +
+                " | Status: " + status;
     }
 }
