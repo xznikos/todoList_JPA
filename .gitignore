@@ -12,6 +12,7 @@ target/
 *.iws
 *.iml
 *.ipr
+*persistence.xml
 
 ### Eclipse ###
 .apt_generated
